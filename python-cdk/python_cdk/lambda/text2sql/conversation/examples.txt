@@ -1,0 +1,8 @@
+Summarize coding variation seen in the canonical transcript of the gene named 'AL591002.1'
+Summarize coding variation seen in the transcript of the gene with name 'AL591002.1'
+Tell me about coding variation seen in the canonical transcript of the gene 'AL591002.1'
+What is the frequency of a variant 'XXX'?
+Are there common loss-of-function variants greater than alternate allele frequency 0.1 in gene XXX?
+Are there any common lof variants greater than alternate allele frequency 0.0003 in gene YYY?
+Are there any common loss-of-function variants greater than alternate allele frequency 0.00015 in gene ZZZ?
+Are there any common loss-of-function variants greater than alternate allele frequency 0.001 in gene GGG?

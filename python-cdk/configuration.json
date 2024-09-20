@@ -1,0 +1,13 @@
+{
+    "appname": "OmicsText2Sql",
+    "account": "XXXXXXXXXXXX",
+    "region": "us-east-1",
+
+    "AthenaRegion": "us-east-1",
+    "AthenaDatabase": "omicsdb",
+    "AthenaWorkgroup": "omicsathena",
+    "AthenaSourceBucket": "omics-athena-source-us-east-1-XXXXXXXXXXXX",
+    "AthenaResultsBucket": "omics-output-us-east-1-XXXXXXXXXXXX",
+    "AppSyncApiUrl": "https://XXXXXXXXXXXXXXXXXXXXXXXXXX.appsync-api.us-east-1.amazonaws.com/graphql",
+    "CognitoUserPoolId": "us-east-1_XXXXXXXXX"
+}

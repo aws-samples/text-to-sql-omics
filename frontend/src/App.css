@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Open Sans', 'Helvetica Neue', Roboto, Arial, sans-serif;
+  }
+}
+
+::-webkit-resizer {
+  display: none;
+}
+body {
+  background: url(/background.png) top center no-repeat;
+  background-size: contain;
+  background-attachment: fixed;
+}
+
+.ace-cloud_editor {
+  background-color: theme('colors.slate.100') !important;
+}
+.ace-cloud_editor > * {
+  padding: 0rem 0.5rem 1rem 1rem;
+}
+
+.collapsible {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 600ms;
+}
+.collapsible > div {
+  overflow: hidden;
+}
+.collapsible.hidden {
+  grid-template-rows: 0fr;
+}
+
+ul.react-autocomplete-input {
+  border-radius: 1rem;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+ul.react-autocomplete-input > li {
+  font-size: 0.8rem;
+  padding: 0rem 2.8rem 0rem 0.8rem;
+}
+ul.react-autocomplete-input > li.active {
+  color: theme('colors.violet.800');
+  background-color: transparent;
+}
+ul.react-autocomplete-input > li.active::before {
+  content: '↵';
+  right: 01rem;
+  font-size: 1.5rem;
+  position: absolute;
+  margin-left: -1rem;
+}
+
+/**************************************************************** animation**/
+
+.growIn {
+  animation: growIn 1.5s;
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s;
+}
+@keyframes summon {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(-0.5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes growIn {
+  0% {
+    opacity: 0;
+    max-height: 10px;
+    overflow: hidden;
+  }
+  100% {
+    opacity: 1;
+    max-height: 5rem;
+  }
+}
+
+@keyframes comeup {
+  0% {
+    opacity: 0;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@layer components {
+  .textInput {
+    @apply w-full rounded-md p-3 pt-4 pl-4 border shadow-sm focus:outline focus:outline-violet-400;
+  }
+  .button {
+    @apply transition-all text-violet-600 hover:text-violet-900;
+  }
+}
+
+.screenshot {
+  z-index: 500;
+  position: fixed;
+  top: 0px;
+  left: calc(50vw);
+  transform: translate(-50%, -50%);
+  top: calc(50vh);
+  animation: save 1.5s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-fill-mode: forwards;
+  box-shadow: 0px 0px 35px #00000033;
+  pointer-events: none;
+  border-radius: 1rem;
+  opacity: 0.8;
+}
+@keyframes save {
+  0% {
+    opacity: 0.8;
+    filter: brightness(0.5);
+  }
+  40% {
+    filter: brightness(1);
+    left: calc(50vw);
+    transform: translate(-50%, -50%);
+    top: calc(50vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.1);
+    top: 50px;
+    left: calc(100vw - 100px);
+    opacity: 0;
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: theme('colors.slate.300') !important;
+}
+
+section > details > summary {
+  list-style: none;
+}
+section > details > summary::-webkit-details-marker {
+  display: none;
+}

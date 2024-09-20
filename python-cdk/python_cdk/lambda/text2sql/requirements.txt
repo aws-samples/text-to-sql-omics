@@ -1,0 +1,11 @@
+langchain==0.1.12
+langchain_community
+langchain_aws
+sqlalchemy
+pyathena
+pandas
+faiss-cpu
+langchainhub
+cattrs==22.1.0
+boto3
+watchtower

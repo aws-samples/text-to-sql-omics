@@ -1,0 +1,98 @@
+:root {
+  --paceAccent: rgb(62, 0, 106);
+  --paceAccentDark: rgb(50, 20, 62);
+  --paceAccentLight: rgb(104, 0, 178);
+  --paceSecondary: rgb(245, 132, 11);
+  --paceSecondaryLight: rgb(255, 220, 155);
+  --paceSecondaryLighter: rgb(255, 236, 202);
+  --amplify-components-button-loading-color: white;
+  --amplify-components-button-primary-background-color: var(--paceAccent);
+  --amplify-components-button-primary-hover-background-color: var(
+    --paceAccentDark
+  );
+  --amplify-components-button-primary-focus-background-color: var(
+    --paceAccentLight
+  );
+  --amplify-components-button-primary-active-background-color: var(
+    --paceAccentLight
+  );
+  --amplify-components-button-background-color: white;
+  --amplify-components-button-hover-background-color: var(
+    --paceSecondaryLighter
+  );
+  --amplify-components-button-active-background-color: var(
+    --paceSecondaryLight
+  );
+  --amplify-components-button-link-hover-background-color: var(
+    --paceSecondaryLighter
+  );
+  --amplify-components-button-link-active-background-color: var(
+    --paceSecondaryLight
+  );
+  --amplify-components-tabs-item-color: var(--paceAccentLight);
+  --amplify-components-tabs-item-hover-color: var(--paceAccent);
+  --amplify-components-tabs-item-active-color: var(--paceAccentLight);
+  --amplify-components-tabs-item-focus-color: var(--paceAccentLight);
+  --amplify-components-tabs-item-active-border-color: var(--paceAccentLight);
+  --amplify-components-fieldcontrol-focus-border-color: var(--paceSecondary);
+  --amplify-components-fieldcontrol-focus-box-shadow: 0px 0px 3px
+    var(--paceSecondary);
+  --amplify-components-authenticator-state-inactive-background-color: transparent;
+}
+div[data-amplify-authenticator] {
+  min-height: 100vh;
+
+  &[data-variation='modal'] {
+    background-color: var(--paceAccentDark);
+  }
+
+  div {
+    border-radius: 30px;
+  }
+  input[name='username'] {
+    border-top-left-radius: 13px !important;
+    border-bottom-left-radius: 13px !important;
+  }
+  input,
+  .amplify-label {
+    text-align: left;
+  }
+  input,
+  button,
+  .amplify-input {
+    border-radius: 13px;
+  }
+  button[type='button'] {
+    color: var(--paceAccentLight);
+    &:hover {
+      color: var(--paceAccentDark);
+    }
+  }
+  button[type='submit'] {
+    background-color: var(--paceAccent);
+    margin-top: 1rem;
+    line-height: 2.3rem;
+    &:hover {
+      background-color: var(--paceAccentDark);
+    }
+  }
+  button[role='tab'] {
+    margin: 1rem 0.5rem 0px 0.5rem;
+    border-top-width: 0px;
+    border-radius: 0px;
+    &[aria-selected='true'] {
+      border-bottom-width: 2px;
+      border-radius: 0px;
+    }
+  }
+  .amplify-label {
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    margin-bottom: -5px;
+    font-weight: bold;
+    opacity: 0.7;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    font-family: monospace;
+  }
+}
