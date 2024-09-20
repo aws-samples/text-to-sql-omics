@@ -46,7 +46,7 @@ The result will be an Amplify app that authenticates through Cognito, and uses a
 ## Skip to the `python-cdk` project deployment
 
 Before continuing with the deployment steps in this file, it is the moment to
-deploy the backend infrastructure. Go to the [python-cdk](./python_cdk/README.md) instructions
+deploy the backend infrastructure. Go to the [python-cdk](../python-cdk/README.md) instructions
 and execute the deployment. You will need the Cognito User Pool ID created by the above Amplify steps. 
 More details on the instructions of that file.
 
