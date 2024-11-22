@@ -1,8 +1,8 @@
 FROM amazon/aws-lambda-python:latest
 
 # Installs python, removes cache file to make things smaller
-# RUN dnf update -y && \
-#     dnf install -y python3.11 python3.11-devel python3.11-pip gcc
+RUN dnf update -y && \
+    dnf install -y gcc gcc-c++ python3-devel
 
 # Copies requirements.txt file into the container
 COPY requirements.txt ./
