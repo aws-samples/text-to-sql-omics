@@ -24,7 +24,7 @@ def get_athena_lc_sqldb_connection(region, athena_db, glue_databucket_name, athe
     athena_engine.dialect.preparer.reserved_words.add('end')
     athena_db_connection = SQLDatabase(athena_engine)
     # Display a few details about the connected Athena DB like tables and columns
-    display_context_details(athena_db_connection, ["clinvar", "genomad", "variants"])
+    display_context_details(athena_db_connection, ["clinvar", "gnomad", "variants"])
 
     return athena_db_connection, athena_engine
 

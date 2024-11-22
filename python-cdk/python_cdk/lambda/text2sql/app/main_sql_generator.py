@@ -21,7 +21,7 @@ from langchain_core.prompts import (
 )
 
 from athena_connection import (get_athena_lc_sqldb_connection)
-from table_prompt import genomad_prompt, variants_prompt, clinvar_prompt
+from table_prompt import gnomad_prompt, variants_prompt, clinvar_prompt
 from question_query_category_examples import examples
 from utils import boto_clients
 from llm_system_prompt import system_prefix
@@ -79,7 +79,7 @@ def execute_query(athena_engine, in_sql_query):
 class OmicsSqlGenerator:
     def __init__(self):
         self.region = REGION
-        self.tables_prompt = genomad_prompt + variants_prompt + clinvar_prompt
+        self.tables_prompt = gnomad_prompt + variants_prompt + clinvar_prompt
         self.athena_db_connection, self.athena_engine = get_athena_lc_sqldb_connection(
             region=self.region,
             athena_db=DATABASE_NAME,

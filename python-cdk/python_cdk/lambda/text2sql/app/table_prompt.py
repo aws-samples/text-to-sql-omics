@@ -1,7 +1,7 @@
-genomad_prompt = """
+gnomad_prompt = """
     <table>
         <table_name>
-        genomad
+        gnomad
         </table_name>
 
         <table_description>
@@ -20,7 +20,7 @@ genomad_prompt = """
         If the question want to know about a particular gene given a gene name, for example: "What is the allele
         frequency of gene `rs121434569` or `{RS121434569}`?", then you should use the column names. Remember to
         use the following syntax to extract each individual name from the `names` array column. The syntax is
-        `select * from omicsdb.genomad cross join unnest(names) as t(name) where name in ('rs121434569', 'RS121434569').
+        `select * from omicsdb.gnomad cross join unnest(names) as t(name) where name in ('rs121434569', 'RS121434569').
 `
         </table_description>
 
@@ -30,7 +30,7 @@ genomad_prompt = """
                 The chromossome where the variant is located. It is prefixed by the string "chr" and a number between 1 and 22.
             </column_description>
             <example_use>
-              SELECT * FROM genomad WHERE contigname = 'chr7';
+              SELECT * FROM gnomad WHERE contigname = 'chr7';
             </example_use>
         </column>
         <column>
@@ -40,7 +40,7 @@ genomad_prompt = """
                 along with the following tables: `contigname`, `end`, `referenceallele`, `alternatealleles`.
             </column_description>
             <example_use>
-              SELECT * FROM genomad WHERE start > 100000 and end < 200000;
+              SELECT * FROM gnomad WHERE start > 100000 and end < 200000;
             </example_use>
         </column>
         <column>
@@ -50,7 +50,7 @@ genomad_prompt = """
                 along with the following tables: `contigname`, `start`, `referenceallele`, `alternatealleles`.
             </column_description>
             <example_use>
-              SELECT * FROM genomad WHERE and start > 100000 and end < 200000;
+              SELECT * FROM gnomad WHERE and start > 100000 and end < 200000;
             </example_use>
         </column>
         <column>
@@ -59,7 +59,7 @@ genomad_prompt = """
                 A semi-colon separated list of unique identifiers for the variant. This often includes dbSNP IDs (e.g., rsIDs).
             </column_description>
             <example_use>
-                select * from genomad
+                select * from gnomad
                 cross join unnest(names) as t(name)
                 where name in ('rs112353164','rs1218977723')
             </example_use>
@@ -68,14 +68,14 @@ genomad_prompt = """
             <column_name>referenceallele</column_name>
             <column_description>The reference allele of the variant</column_description>
             <example_use>
-              SELECT * FROM genomad WHERE referenceallele = 'XXXXXXXXXXXXXXX';
+              SELECT * FROM gnomad WHERE referenceallele = 'XXXXXXXXXXXXXXX';
             </example_use>
         </column>
         <column>
             <column_name>alternatealleles</column_name>
             <column_description>An array of alternate alleles for the variant</column_description>
             <example_use>
-                SELECT * FROM genomad
+                SELECT * FROM gnomad
                 cross join unnest(alternatealleles) as t(alternateallele)
                 where alternateallele in ('G', 'T')
                 limit 100;
@@ -98,7 +98,7 @@ genomad_prompt = """
                 These filters help ensure the reliability of the data used for downstream analyses.
             </column_description>
             <example_use>
-                select * from genomad
+                select * from gnomad
                     cross join unnest(filters) as t(filter)
                 WHERE filter NOT LIKE '%AC0%'
                 AND start between 128401319 and 129401319;
@@ -112,7 +112,7 @@ genomad_prompt = """
                 Purpose of `splitfrommultiallelic`: This field indicates whether a variant record was created as a result of this splitting process. It helps users understand that the variant was originally part of a more complex multi-allelic site.
             </column_description>
             <example_use>
-                select * from genomad
+                select * from gnomad
                 where splitfrommultiallelic = false
                 AND start between 129401219 and 129401329;
             </example_use>
@@ -123,7 +123,7 @@ genomad_prompt = """
                 The attributes column in the gnomAD data typically contains a variety of annotations and metadata about each genetic
                 variant. These attributes provide detailed information on the variant's properties, including its functional impact,
                 frequency in different populations, quality metrics, and other relevant data points. Below is an explanation of some
-                common attributes you might find in this column. The attributes in GenomAD data are:
+                common attributes you might find in this column. The attributes in gnomad data are:
                 
                 `AC`: Allele Count. Definition: The number of times the alternate allele is observed in the dataset. Purpose: Provides 
                 insight into how common a variant is in the population.
@@ -132,7 +132,7 @@ genomad_prompt = """
                 common or rare a variant is in the population. 
             </column_description>
             <example_use>
-                select * from genomad
+                select * from gnomad
                 where TRY_CAST(attributes['AF'] AS DOUBLE) > 0.5
                 and TRY_CAST(attributes['AC'] AS INTEGER) > 100
             </example_use>
@@ -143,7 +143,7 @@ genomad_prompt = """
                 The attributes column in the gnomAD data typically contains a variety of annotations and metadata about each genetic
                 variant. These attributes provide detailed information on the variant's properties, including its functional impact,
                 frequency in different populations, quality metrics, and other relevant data points. Below is an explanation of some
-                common attributes you might find in this column. The attributes in GenomAD data are:
+                common attributes you might find in this column. The attributes in gnomad data are:
                 
                 `AC`: Allele Count. Definition: The number of times the alternate allele is observed in the dataset. Purpose: Provides 
                 insight into how common a variant is in the population.
@@ -152,7 +152,7 @@ genomad_prompt = """
                 common or rare a variant is in the population. 
             </column_description>
             <example_use>
-                select * from genomad
+                select * from gnomad
                 where TRY_CAST(attributes['AF'] AS DOUBLE) > 0.5
                 and TRY_CAST(attributes['AC'] AS INTEGER) > 100
             </example_use>
@@ -552,11 +552,11 @@ clinvar_prompt= """
                             c.sampleid,
                             g."names",
                             g.attributes,
-                            g.contigname as contigname_genomad,
+                            g.contigname as contigname_gnomad,
                             g."start",
                             g.sampleid
                         from omicsdb.clinvar c
-                        LEFT JOIN omicsdb.genomad g on c."end" = g."end" AND g.contigname = concat('chr', c.contigname)
+                        LEFT JOIN omicsdb.gnomad g on c."end" = g."end" AND g.contigname = concat('chr', c.contigname)
                         where 1=1
                             and c.attributes['CLNDN'] like '%Non-small_cell_lung_carcinoma%'
                             and c.attributes['CLNSIG'] in ('drug_response')
@@ -590,11 +590,11 @@ clinvar_prompt= """
                             c.sampleid,
                             g."names",
                             g.attributes,
-                            g.contigname as contigname_genomad,
+                            g.contigname as contigname_gnomad,
                             g."start",
                             g.sampleid
                         from omicsdb.clinvar c
-                        LEFT JOIN omicsdb.genomad g on c."end" = g."end" AND g.contigname = concat('chr', c.contigname)
+                        LEFT JOIN omicsdb.gnomad g on c."end" = g."end" AND g.contigname = concat('chr', c.contigname)
                         where 1=1
                             and c.attributes['CLNDN'] like '%Non-small_cell_lung_carcinoma%'
                             and c.attributes['CLNSIG'] in ('drug_response')

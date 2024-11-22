@@ -6,7 +6,6 @@ from aws_cdk import aws_ssm as ssm
 from Configuration import Configuration
 from components.vpc import VpcConstruct
 from components.ec2 import EC2Construct
-from components.athena import AthenaConstruct
 from components.api_gateway import APIGatewayConstruct
 from components.lambdas import LambdaConstruct
 from cdk_nag import NagSuppressions, NagPackSuppression
@@ -15,7 +14,6 @@ from cdk_nag import NagSuppressions, NagPackSuppression
 class PythonCdkStack(Stack):
     vpc: VpcConstruct
     ec2: EC2Construct
-    athena: AthenaConstruct
     apigateway: APIGatewayConstruct
     lambdas: LambdaConstruct
 

@@ -13,11 +13,11 @@ SELECT
     c.sampleid,
     g."names",
     g.attributes,
-    g.contigname as contigname_genomad,
+    g.contigname as contigname_gnomad,
     g."start",
     g.sampleid
 from omicsdb.clinvar c
-LEFT JOIN omicsdb.genomad g on c."end" = g."end" AND g.contigname = concat('chr', c.contigname)
+LEFT JOIN omicsdb.gnomad g on c."end" = g."end" AND g.contigname = concat('chr', c.contigname)
 where 1=1
     and c.attributes['CLNDN'] like '%Non-small_cell_lung_carcinoma%'
     and c.attributes['CLNSIG'] in ('drug_response')
@@ -36,11 +36,11 @@ SELECT
     c.sampleid,
     g."names",
     g.attributes,
-    g.contigname as contigname_genomad,
+    g.contigname as contigname_gnomad,
     g."start",
     g.sampleid
 from omicsdb.clinvar c
-LEFT JOIN omicsdb.genomad g on c."end" = g."end" AND g.contigname = concat('chr', c.contigname)
+LEFT JOIN omicsdb.gnomad g on c."end" = g."end" AND g.contigname = concat('chr', c.contigname)
 where 1=1
     and c.attributes['CLNDN'] like '%Tyrosine_kinase_inhibitor_response%'
     and c.attributes['CLNSIG'] in ('Pathogenic/Likely_pathogenic')
