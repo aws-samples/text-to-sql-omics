@@ -62,8 +62,16 @@ data deployed with the [AWS HealthOmics](https://docs.aws.amazon.com/omics/lates
 
 In order to deploy that dataset, the authors of this repository followed the steps in the [AWS HealthOmics workshop](https://catalog.workshops.aws/amazon-omics-end-to-end/en-US).
 The most important pre-requisite is to have the steps of the [HealthOmics Analytics](https://catalog.workshops.aws/amazon-omics-end-to-end/en-US/010-xp-console/300-omics-analytics)
-executed to create the variant stores and the annotation stores. When creating resource links to provide reader friendly
-table names, use the following names: _variants_, and _clinvar_. The database should be called _omicsdb_. We also
+executed to create the variant stores and the annotation stores. 
+
+In that workshop, the _clinvar_ annotation store is created. This sample code also contain prompts to generate SQL using the [gnomAD](https://aws.amazon.com/marketplace/pp/prodview-z4kk27u6t3nje?sr=0-1&ref_=beagle&applicationId=AWSMPContessa#overview) dataset as an additional annotation store. In order to do that, follow the same steps recommended in the HealthOmics workshop to create the _clinvar_ annotation store pointing to the respective Amazon S3 URIs containing the _gnomAD_ VCF files for each chromosome. As an example for chromosomes 1 and 2 the respective S3 URIs are: 
+
+* `s3://gnomad-public-us-east-1/release/4.1/vcf/exomes/gnomad.exomes.v4.1.sites.chr1.vcf.bgz`
+* `s3://gnomad-public-us-east-1/release/4.1/vcf/exomes/gnomad.exomes.v4.1.sites.chr2.vcf.bgz`
+
+
+When creating resource links to provide reader friendly
+table names, use the following names: _variants_, _gnomad_, and _clinvar_. The database should be called _omicsdb_. We also
 recommend that you use _omicsathena_ as the Athena workgroup. 
 
 Finally, make sure you follow the steps present in the [Using AWS CDK for Pandas](https://catalog.workshops.aws/amazon-omics-end-to-end/en-US/010-xp-console/300-omics-analytics/310-querying-data/aws-wrangler).
@@ -162,7 +170,6 @@ references created by the deployment of the 1000 Genome dataset as explained in 
     "AthenaRegion": "us-east-1",
     "AthenaDatabase": "omicsdb",
     "AthenaWorkgroup": "omicsathena",
-    "AthenaSourceBucket": "omics-output-us-east-1-XXXXXXXXXXXXX",
     "AthenaResultsBucket": "omics-output-us-east-1-XXXXXXXXXXXXXX",
     "AppSyncApiUrl": "https://XXXXXXXXXXXXXXXXXXXXXXX.appsync-api.us-east-1.amazonaws.com/graphql",
     "CognitoUserPoolId": "us-east-1_XXXXXXXXX"
@@ -198,7 +205,7 @@ cdk synth
 cdk deploy
 ```
 
-After the deployment is successful, go back to the [frontend](./frontend/README.md) instructions and
+After the deployment is successful, go back to the [frontend](../frontend/README.md) instructions and
 proceed from the `Environment Variables` section. You will need to copy and paste the API Gateway `sqlToTextBase` base 
 API URL to the local environment variables file.
 
